@@ -1,11 +1,13 @@
 import React, { useState } from "react";
 import ChannelSection from "./components/channels/ChannelSection";
+import MessageSection from "./components/messages/MessageSection";
 import UserSection from "./components/users/UserSection";
 
 function App() {
   const [channels, setChannels] = useState([]);
   const [activeChannel, setActiveChannel] = useState({});
   const [users, setUsers] = useState([]);
+  const [messages, setMessages] = useState([]);
 
   const addChannel = name => {
     const newChannels = [{ id: channels.length, name }, ...channels];
@@ -26,6 +28,9 @@ function App() {
     return name;
   };
 
+  const addMessage = body => {};
+  // TODO: this.socket.emit('message add', {channelId: activeChannel.id, body })
+
   return (
     <div className="app">
       <div className="nav">
@@ -37,6 +42,11 @@ function App() {
         />
         <UserSection users={users} setUserName={setUserName} />
       </div>
+      <MessageSection
+        addMessage={addMessage}
+        messages={messages}
+        activeChannel={activeChannel}
+      />
     </div>
   );
 }
