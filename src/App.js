@@ -25,11 +25,21 @@ function App() {
 
   const setUserName = name => {
     // TODO: Implement a socket to the server
-    return name;
+    const newUsers = [{ id: users.length, name }, ...users];
+    setUsers(newUsers);
   };
 
-  const addMessage = body => {};
-  // TODO: this.socket.emit('message add', {channelId: activeChannel.id, body })
+  const addMessage = body => {
+    // TODO: this.socket.emit('message add', {channelId: activeChannel.id, body })
+    const createdAt = new Date();
+    const author = users.length > 0 ? users[0].name : "anonymous";
+    const newMessages = [
+      { id: messages.length, body, createdAt, author },
+      ...messages
+    ];
+    console.log(newMessages);
+    setMessages(newMessages);
+  };
 
   return (
     <div className="app">
