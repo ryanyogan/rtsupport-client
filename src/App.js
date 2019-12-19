@@ -1,24 +1,28 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React, { useState } from "react";
+import ChannelSection from "./components/channels/ChannelSection";
 
 function App() {
+  const [channels, setChannels] = useState([]);
+  const [activeChannel, setActiveChannel] = useState({});
+
+  const addChannel = name => {
+    const newChannels = [{ id: channels.length, name }, ...channels];
+    setChannels(newChannels);
+  };
+
+  const setChannel = channel => {
+    setActiveChannel({ channel });
+  };
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div className="app">
+      <div className="nav">
+        <ChannelSection
+          setChannel={setChannel}
+          channels={channels}
+          addChannel={addChannel}
+        />
+      </div>
     </div>
   );
 }
