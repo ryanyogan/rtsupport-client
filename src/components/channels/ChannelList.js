@@ -1,12 +1,12 @@
-import { array, func } from "prop-types";
+import { array, func, object } from "prop-types";
 import React from "react";
 import Channel from "./Channel";
 
-const ChannelList = ({ setChannel, channels }) => {
+const ChannelList = props => {
   return (
     <ul>
-      {channels.map(chan => (
-        <Channel key={chan.id} channel={chan} setChannel={setChannel} />
+      {props.channels.map(chan => (
+        <Channel key={chan.id} channel={chan} {...props} />
       ))}
     </ul>
   );
@@ -14,7 +14,8 @@ const ChannelList = ({ setChannel, channels }) => {
 
 ChannelList.propTypes = {
   channels: array.isRequired,
-  setChannel: func.isRequired
+  setChannel: func.isRequired,
+  activeChannel: object.isRequired
 };
 
 export default ChannelList;

@@ -1,17 +1,17 @@
-import { array, func } from "prop-types";
+import { array, func, object } from "prop-types";
 import React from "react";
 import ChannelForm from "./ChannelForm";
 import ChannelList from "./ChannelList";
 
-const ChannelSection = ({ channels, setChannel, addChannel }) => {
+const ChannelSection = props => {
   return (
     <div className="support panel panel-primary">
       <div className="panel-heading">
         <strong>Channels</strong>
       </div>
       <div className="panel-body channels">
-        <ChannelList channels={channels} setChannel={setChannel} />
-        <ChannelForm addChannel={addChannel} />
+        <ChannelList {...props} />
+        <ChannelForm {...props} />
       </div>
     </div>
   );
@@ -20,7 +20,8 @@ const ChannelSection = ({ channels, setChannel, addChannel }) => {
 ChannelSection.propTypes = {
   channels: array.isRequired,
   setChannel: func.isRequired,
-  addChannel: func.isRequired
+  addChannel: func.isRequired,
+  activeChannel: object.isRequired
 };
 
 export default ChannelSection;

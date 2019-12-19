@@ -1,15 +1,17 @@
 import { func, object } from "prop-types";
 import React from "react";
 
-const Channel = ({ channel, setChannel }) => {
+const Channel = ({ setChannel, channel, activeChannel }) => {
   const onClick = e => {
     e.preventDefault();
 
     setChannel(channel);
   };
 
+  const active = channel === activeChannel ? "active" : "";
+
   return (
-    <li>
+    <li className={active}>
       <a href="#/" onClick={onClick}>
         {channel.name}
       </a>
@@ -19,7 +21,8 @@ const Channel = ({ channel, setChannel }) => {
 
 Channel.propTypes = {
   channel: object.isRequired,
-  setChannel: func.isRequired
+  setChannel: func.isRequired,
+  activeChannel: object.isRequired
 };
 
 export default Channel;

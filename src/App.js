@@ -11,13 +11,14 @@ function App() {
   };
 
   const setChannel = channel => {
-    setActiveChannel({ channel });
+    setActiveChannel(channel);
   };
 
   return (
     <div className="app">
       <div className="nav">
         <ChannelSection
+          activeChannel={activeChannel}
           setChannel={setChannel}
           channels={channels}
           addChannel={addChannel}
